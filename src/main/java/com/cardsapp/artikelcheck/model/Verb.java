@@ -7,9 +7,9 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name="nouns")
+@Table(name="verbs")
 @Data
-public class Noun extends Word {
-    private String plural;
-    private NominativeArticle article;
+public class Verb extends Word {
+    private String partizipZwei;
+    private Hilfsverb hilfsverb;
 }
