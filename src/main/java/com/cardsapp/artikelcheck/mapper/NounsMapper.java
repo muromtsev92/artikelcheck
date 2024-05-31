@@ -18,7 +18,7 @@ public class NounsMapper {
         return NounDto.builder()
                 .id(noun.getId())
                 .article(noun.getArticle())
-                .word(noun.getPlural())
+                .word(noun.getWord())
                 .russian(noun.getRussian())
                 .plural(noun.getPlural())
                 .additionDate(noun.getAdditionDate()).build();

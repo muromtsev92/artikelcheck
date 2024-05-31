@@ -6,12 +6,9 @@ import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name="words")
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 @SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 public abstract class Word {

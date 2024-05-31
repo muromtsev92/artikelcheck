@@ -8,9 +8,11 @@ import lombok.experimental.SuperBuilder;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name="nouns")
-@Data
-@RequiredArgsConstructor
+@Getter
+@Setter
 @SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Noun extends Word {
     private String plural;
     private NominativeArticle article;

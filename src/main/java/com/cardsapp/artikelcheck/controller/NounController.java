@@ -2,6 +2,7 @@ package com.cardsapp.artikelcheck.controller;
 
 import com.cardsapp.artikelcheck.dto.NounDto;
 import com.cardsapp.artikelcheck.dto.WordDto;
+import com.cardsapp.artikelcheck.mapper.NounsMapper;
 import com.cardsapp.artikelcheck.model.Noun;
 import com.cardsapp.artikelcheck.model.Word;
 import com.cardsapp.artikelcheck.service.WordService;
@@ -17,16 +18,16 @@ import java.util.List;
 @RequestMapping("/nouns")
 @RequiredArgsConstructor
 public class NounController {
-    private final WordService nounService;
+    private final WordService<NounDto> nounService;
 
     @GetMapping
-    public List<WordDto> getAllWords(){
+    public List<NounDto> getAllWords(){
         log.info("getAllWords() works");
         return nounService.findAllWords();
     }
 
     @PostMapping
-    public Noun addWord(@RequestBody NounDto nounDto){
+    public NounDto addWord(@RequestBody NounDto nounDto){
         log.info("addWord() {id}", nounDto.getId());
         return nounService.addWord(nounDto);
     }

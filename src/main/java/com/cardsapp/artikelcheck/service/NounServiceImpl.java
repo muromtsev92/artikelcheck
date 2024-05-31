@@ -13,35 +13,35 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class NounServiceImpl implements WordService<Noun, NounDto>{
+public class NounServiceImpl implements WordService<NounDto>{
 
     private final NounRepository nounRepository;
 
     @Override
-    public Noun addWord(NounDto word) {
+    public NounDto addWord(NounDto nounDto) {
 
-        Noun noun = NounsMapper.toNoun(word);
+        Noun noun = NounsMapper.toNoun(nounDto);
 
-        return nounRepository.save(noun);
+        return NounsMapper.toNounDto(nounRepository.save(noun));
     }
 
     @Override
-    public WordDto findWord(WordDto word) {
+    public NounDto findWord(NounDto word) {
         return null;
     }
 
     @Override
-    public List<WordDto> findAllWords() {
+    public List<NounDto> findAllWords() {
         return List.of();
     }
 
     @Override
-    public void deleteWord(Word word) {
+    public void deleteWord(NounDto word) {
 
     }
 
     @Override
-    public List<WordDto> getRandomWords(int howMuch) {
+    public List<NounDto> getRandomWords(int howMuch) {
         return List.of();
     }
 
