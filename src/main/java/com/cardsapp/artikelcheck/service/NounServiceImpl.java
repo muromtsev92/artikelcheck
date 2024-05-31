@@ -1,6 +1,9 @@
 package com.cardsapp.artikelcheck.service;
 
+import com.cardsapp.artikelcheck.dto.NounDto;
 import com.cardsapp.artikelcheck.dto.WordDto;
+import com.cardsapp.artikelcheck.mapper.NounsMapper;
+import com.cardsapp.artikelcheck.model.Noun;
 import com.cardsapp.artikelcheck.model.Word;
 import com.cardsapp.artikelcheck.repository.NounRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,13 +13,16 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class NounServiceImpl implements WordService{
+public class NounServiceImpl implements WordService<Noun, NounDto>{
 
     private final NounRepository nounRepository;
 
     @Override
-    public WordDto addWord(WordDto word) {
-        return null;
+    public Noun addWord(NounDto word) {
+
+        Noun noun = NounsMapper.toNoun(word);
+
+        return nounRepository.save(noun);
     }
 
     @Override
