@@ -24,23 +24,25 @@
 <h1>List of Nouns</h1>
 <table>
     <thead>
-    <tr>
-        <th>ID</th>
-        <th>Word</th>
-        <th>Plural</th>
-        <th>Russian</th>
-        <th>Date of Addition</th>
-    </tr>
+        <tr>
+            <th>ID</th>
+            <th>Word</th>
+            <th>Plural</th>
+            <th>Russian</th>
+            <th>Date of Addition</th>
+        </tr>
     </thead>
+
     <tbody>
-    <tr th:each="noun : ${nouns}">
-        <td th:text="${noun.id}"></td>
-        <td th:text="${noun.word}"></td>
-        <td th:text="${noun.plural}"></td>
-        <td th:text="${noun.russian}"></td>
-        <td th:text="${noun.additionDate}"></td>
-    </tr>
+        <tr th:each="nounDto : ${nounDtoList}">
+            <td th:text="${nounDto.id}"></td>
+            <td th:text="${nounDto.word}"></td>
+            <td th:text="${nounDto.plural}"></td>
+            <td th:text="${nounDto.russian}"></td>
+            <td th:text="${nounDto.additionDate}"></td>
+        </tr>
     </tbody>
+
 </table>
 <a href="/nouns/add">Add New Noun</a>
 </body>

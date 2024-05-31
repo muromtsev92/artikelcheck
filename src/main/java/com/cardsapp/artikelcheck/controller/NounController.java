@@ -21,7 +21,7 @@ public class NounController {
     @GetMapping
     public String getAllNouns(Model model){
         log.info("getAllWords() works");
-        model.addAttribute("nouns", nounService.findAllWords());
+        model.addAttribute("nounDtoList", nounService.findAllWords());
         return "nouns";
     }
 
