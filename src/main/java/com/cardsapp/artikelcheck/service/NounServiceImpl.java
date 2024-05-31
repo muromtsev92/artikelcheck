@@ -32,7 +32,11 @@ public class NounServiceImpl implements WordService<NounDto>{
 
     @Override
     public List<NounDto> findAllWords() {
-        return List.of();
+        List<Noun> list = nounRepository.findAll();
+        List<NounDto> dtoList = list.stream()
+                .map(NounsMapper::toNounDto)
+                .toList();
+        return dtoList;
     }
 
     @Override
