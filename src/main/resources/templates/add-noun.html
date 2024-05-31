@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add noun</title>
+</head>
+<body>
+    <h1>Add a new noun</h1>
+    <form th:action="@{/nouns/add}" th:object="${nounDto}" method="post">
+        <div>
+            <label for="article">Article:</label>
+            <input type="text" id="article" th:field="*{article}" />
+        </div>
+
+        <div>
+            <label for="word">Singular:</label>
+            <input type="text" id="word" th:field="*{word}" />
+        </div>
+
+        <div>
+            <label for="plural">Plural:</label>
+            <input type="text" id="plural" th:field="*{plural}" />
+        </div>
+
+        <div>
+            <label for="russian">Translation:</label>
+            <input type="text" id="russian" th:field="*{russian}" />
+        </div>
+
+        <div>
+            <button type="submit">Add Noun</button>
+        </div>
+
+    </form>
+</body>
+</html>

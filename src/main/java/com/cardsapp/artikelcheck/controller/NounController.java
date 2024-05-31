@@ -1,34 +1,46 @@
 package com.cardsapp.artikelcheck.controller;
 
 import com.cardsapp.artikelcheck.dto.NounDto;
-import com.cardsapp.artikelcheck.dto.WordDto;
-import com.cardsapp.artikelcheck.mapper.NounsMapper;
-import com.cardsapp.artikelcheck.model.Noun;
-import com.cardsapp.artikelcheck.model.Word;
 import com.cardsapp.artikelcheck.service.WordService;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @Slf4j
-@RestController
+@Controller
 @RequestMapping("/nouns")
 @RequiredArgsConstructor
 public class NounController {
     private final WordService<NounDto> nounService;
 
     @GetMapping
-    public List<NounDto> getAllWords(){
+    public String getAllNouns(Model model){
         log.info("getAllWords() works");
-        return nounService.findAllWords();
+        model.addAttribute("nouns", nounService.findAllWords());
+        return "nouns";
     }
 
-    @PostMapping
-    public NounDto addWord(@RequestBody NounDto nounDto){
-        log.info("addWord() {id}", nounDto.getId());
+    @GetMapping("/add")
+    public String showAddForm(Model model){
+        model.addAttribute("nounDto", new NounDto());
+        return "add-noun";
+    }
+
+//    @PostMapping
+//    public NounDto addWord(@RequestBody NounDto nounDto){
+//        log.info("addWord() {id}", nounDto.getId());
+//        return nounService.addWord(nounDto);
+//    }
+
+    @PostMapping("/add")
+    public String addWord(@ModelAttribute NounDto nounDto){
+        log.info("addNoun() {id}", nounDto.getId());
         return nounService.addWord(nounDto);
     }
+
 }

@@ -1,3 +1,4 @@
+--DROP table if exists nouns, verbs;
 
 CREATE TABLE IF NOT EXISTS nouns
 (
@@ -7,7 +8,8 @@ CREATE TABLE IF NOT EXISTS nouns
     addition_date TIMESTAMP  WITHOUT TIME ZONE,
     plural VARCHAR(50)                        ,
     article VARCHAR(50)                        ,
-    CONSTRAINT pk_nouns PRIMARY KEY (id)
+    CONSTRAINT pk_nouns PRIMARY KEY (id),
+    CONSTRAINT uq_nouns UNIQUE (word)
     );
 
 CREATE TABLE IF NOT EXISTS verbs

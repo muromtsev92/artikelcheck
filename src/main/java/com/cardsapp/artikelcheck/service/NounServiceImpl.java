@@ -9,6 +9,7 @@ import com.cardsapp.artikelcheck.repository.NounRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -17,13 +18,13 @@ public class NounServiceImpl implements WordService<NounDto>{
 
     private final NounRepository nounRepository;
 
-    @Override
-    public NounDto addWord(NounDto nounDto) {
-
-        Noun noun = NounsMapper.toNoun(nounDto);
-
-        return NounsMapper.toNounDto(nounRepository.save(noun));
-    }
+    //@Override
+//    public NounDto addWord(NounDto nounDto) {
+//
+//        Noun noun = NounsMapper.toNoun(nounDto);
+//
+//        return NounsMapper.toNounDto(nounRepository.save(noun));
+//    }
 
     @Override
     public NounDto findWord(NounDto word) {
@@ -33,10 +34,9 @@ public class NounServiceImpl implements WordService<NounDto>{
     @Override
     public List<NounDto> findAllWords() {
         List<Noun> list = nounRepository.findAll();
-        List<NounDto> dtoList = list.stream()
+        return list.stream()
                 .map(NounsMapper::toNounDto)
                 .toList();
-        return dtoList;
     }
 
     @Override
@@ -47,6 +47,24 @@ public class NounServiceImpl implements WordService<NounDto>{
     @Override
     public List<NounDto> getRandomWords(int howMuch) {
         return List.of();
+    }
+
+    @Override
+    public String addWord(NounDto nounDto) {
+        Noun noun = Noun.builder()
+                .word(nounDto.getWord())
+                .plural(nounDto.getPlural())
+                .article(nounDto.getArticle())
+                .russian(nounDto.getRussian())
+                .additionDate(LocalDateTime.now())
+                .build();
+        try{
+            nounRepository.save(noun);
+        } catch (Exception e){
+            return "redirect:/nouns";
+            //TODO: обработать нормально
+        }
+        return "redirect:/nouns";
     }
 
 }

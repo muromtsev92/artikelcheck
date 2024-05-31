@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @SuperBuilder
@@ -15,5 +15,5 @@ public abstract class WordDto {
     protected Long id;
     protected String word;
     protected String russian;
-    protected LocalDate additionDate;
+    protected LocalDateTime additionDate;
 }

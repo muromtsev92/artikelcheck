@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @SuperBuilder
@@ -18,5 +19,5 @@ public abstract class Word {
     protected String word;
     protected String russian;
     @Column(name="addition_date")
-    protected LocalDate additionDate;
+    protected LocalDateTime additionDate;
 }
