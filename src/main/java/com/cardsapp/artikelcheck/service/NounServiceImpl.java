@@ -18,14 +18,6 @@ public class NounServiceImpl implements WordService<NounDto>{
 
     private final NounRepository nounRepository;
 
-    //@Override
-//    public NounDto addWord(NounDto nounDto) {
-//
-//        Noun noun = NounsMapper.toNoun(nounDto);
-//
-//        return NounsMapper.toNounDto(nounRepository.save(noun));
-//    }
-
     @Override
     public NounDto findWord(NounDto word) {
         return null;

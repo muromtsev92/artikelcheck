@@ -27,6 +27,7 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Article</th>
             <th>Word</th>
             <th>Plural</th>
             <th>Russian</th>
@@ -37,6 +38,7 @@
     <tbody>
         <tr th:each="nounDto : ${nounDtoList}">
             <td th:text="${nounDto.id}"></td>
+            <td th:text="${nounDto.article}"></td>
             <td th:text="${nounDto.word}"></td>
             <td th:text="${nounDto.plural}"></td>
             <td th:text="${nounDto.russian}"></td>
