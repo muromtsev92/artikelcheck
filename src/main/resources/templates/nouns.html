@@ -22,6 +22,7 @@
 </head>
 <body>
 <h1>List of Nouns</h1>
+<p th:if="${message}" th:text="${message}"></p>
 <table>
     <thead>
         <tr>
@@ -40,6 +41,7 @@
             <td th:text="${nounDto.plural}"></td>
             <td th:text="${nounDto.russian}"></td>
             <td th:text="${nounDto.additionDate}"></td>
+            <td><a th:href="@{'/nouns/delete/' + ${nounDto.id}}">Delete item</a></td>
         </tr>
     </tbody>
 

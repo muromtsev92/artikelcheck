@@ -40,8 +40,8 @@ public class NounServiceImpl implements WordService<NounDto>{
     }
 
     @Override
-    public void deleteWord(NounDto word) {
-
+    public void deleteWord(Long id) {
+        nounRepository.deleteById(id);
     }
 
     @Override
@@ -62,7 +62,8 @@ public class NounServiceImpl implements WordService<NounDto>{
             nounRepository.save(noun);
         } catch (Exception e){
             return "redirect:/nouns";
-            //TODO: обработать нормально
+            //TODO: обработать нормально, спросить
+            // как сделать всплывашку при попытке создать дубль
         }
         return "redirect:/nouns";
     }

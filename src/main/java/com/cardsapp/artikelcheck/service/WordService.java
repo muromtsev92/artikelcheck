@@ -10,7 +10,7 @@ public interface WordService<T extends WordDto> {
 
     T findWord(T wordDto);
     List<T> findAllWords();
-    void deleteWord(T wordDto);
+    void deleteWord(Long id);
     List<T> getRandomWords(int howMuch);
     String addWord(T wordDto);
 }
