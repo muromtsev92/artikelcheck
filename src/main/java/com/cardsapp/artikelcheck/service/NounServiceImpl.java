@@ -1,16 +1,16 @@
 package com.cardsapp.artikelcheck.service;
 
 import com.cardsapp.artikelcheck.dto.NounDto;
-import com.cardsapp.artikelcheck.dto.WordDto;
+import com.cardsapp.artikelcheck.exceptions.NotFoundException;
 import com.cardsapp.artikelcheck.mapper.NounsMapper;
 import com.cardsapp.artikelcheck.model.Noun;
-import com.cardsapp.artikelcheck.model.Word;
 import com.cardsapp.artikelcheck.repository.NounRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,8 +19,10 @@ public class NounServiceImpl implements WordService<NounDto>{
     private final NounRepository nounRepository;
 
     @Override
-    public NounDto findWord(NounDto word) {
-        return null;
+    public NounDto findWord(NounDto nounDto) {
+        Optional<Noun> noun = nounRepository.findById(nounDto.getId());
+        return noun.map(NounsMapper::toNounDto)
+                .orElseThrow(() -> new NotFoundException("Noun wasn't found"));
     }
 
     @Override
@@ -34,6 +36,15 @@ public class NounServiceImpl implements WordService<NounDto>{
     @Override
     public void deleteWord(Long id) {
         nounRepository.deleteById(id);
+    }
+
+    public void updateNoun(Long id, NounDto nounDto) {
+        Noun noun = nounRepository.findById(id).orElseThrow(() -> new NotFoundException("Noun not found"));
+        noun.setArticle(nounDto.getArticle());
+        noun.setWord(nounDto.getWord());
+        noun.setPlural(nounDto.getPlural());
+        noun.setRussian(nounDto.getRussian());
+        NounsMapper.toNounDto(nounRepository.save(noun));
     }
 
     @Override

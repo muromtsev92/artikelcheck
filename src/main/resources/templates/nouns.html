@@ -25,29 +25,78 @@
 <p th:if="${message}" th:text="${message}"></p>
 <table>
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>Article</th>
-            <th>Word</th>
-            <th>Plural</th>
-            <th>Russian</th>
-            <th>Date of Addition</th>
-        </tr>
+    <tr>
+        <th>ID</th>
+        <th>Article</th>
+        <th>Word</th>
+        <th>Plural</th>
+        <th>Russian</th>
+        <th>Date of Addition</th>
+        <th>Actions</th>
+    </tr>
     </thead>
-
     <tbody>
-        <tr th:each="nounDto : ${nounDtoList}">
-            <td th:text="${nounDto.id}"></td>
-            <td th:text="${nounDto.article}"></td>
-            <td th:text="${nounDto.word}"></td>
-            <td th:text="${nounDto.plural}"></td>
-            <td th:text="${nounDto.russian}"></td>
-            <td th:text="${nounDto.additionDate}"></td>
-            <td><a th:href="@{'/nouns/delete/' + ${nounDto.id}}">Delete item</a></td>
-        </tr>
+    <tr th:each="nounDto : ${nounDtoList}">
+        <td th:text="${nounDto.id}"></td>
+        <td><input type="text" th:value="${nounDto.article}" readonly/></td>
+        <td><input type="text" th:value="${nounDto.word}" readonly/></td>
+        <td><input type="text" th:value="${nounDto.plural}" readonly/></td>
+        <td><input type="text" th:value="${nounDto.russian}" readonly/></td>
+        <td th:text="${nounDto.additionDate}"></td>
+        <td>
+            <button type="button" onclick="editRow(this)">Edit</button>
+            <form th:action="@{'/nouns/delete/' + ${nounDto.id}}" method="get" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+<!--            ?отличие button от form-->
+        </td>
+    </tr>
     </tbody>
-
 </table>
-<a href="/nouns/add">Add New Noun</a>
+
+<form th:action="@{'/nouns/add'}" method="get" style="display:inline;">
+    <button type="submit">Add new noun</button>
+</form>
+
+<script>
+    function editRow(button) {
+        const row = button.closest('tr');
+        const inputs = row.querySelectorAll('input');
+        const editMode = button.textContent === 'Edit';
+
+        // Toggle readOnly property for each input
+        inputs.forEach(input => input.readOnly = !editMode);
+
+        if (editMode) {
+            button.textContent = 'Save';
+        } else {
+            button.textContent = 'Edit';
+
+            // Save changes
+            const id = row.querySelector('td').textContent.trim();
+            const data = {
+                article: inputs[0].value,
+                word: inputs[1].value,
+                plural: inputs[2].value,
+                russian: inputs[3].value
+            };
+
+            fetch(`/nouns/update/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                if (response.ok) {
+                    alert('Changes saved successfully');
+                } else {
+                    alert('Error saving changes');
+                }
+            });
+        }
+    }
+</script>
+
 </body>
 </html>

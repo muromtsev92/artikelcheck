@@ -36,13 +36,19 @@ public class NounController {
         return nounService.addWord(nounDto);
     }
 
+    @PostMapping("/update/{id}")
+    @ResponseBody
+    public void updateNoun(@PathVariable("id") Long id, @RequestBody NounDto nounDto) {
+        nounService.updateNoun(id, nounDto);
+    }
+
     @GetMapping("/delete/{id}")
     public String deleteNoun(@PathVariable Long id,
                              RedirectAttributes redirectAttributes){
         log.info("deleteNoun() {id}", id);
         nounService.deleteWord(id);
         redirectAttributes
-                .addFlashAttribute("message", "запись удалена");
+                .addFlashAttribute("message", "запись " + id + " id удалена");
         return "redirect:/nouns";
     }
 
