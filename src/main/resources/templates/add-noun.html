@@ -11,6 +11,7 @@
     <h1>Add a new noun</h1>
     <form th:action="@{/nouns/add}" th:object="${nounDto}" method="post">
         <div>
+            //TODO: radio button
             <label for="article">Article:</label>
             <input type="text" id="article" th:field="*{article}" />
         </div>

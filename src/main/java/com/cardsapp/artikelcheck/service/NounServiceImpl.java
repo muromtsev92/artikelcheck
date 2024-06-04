@@ -49,7 +49,8 @@ public class NounServiceImpl implements WordService<NounDto>{
 
     @Override
     public List<NounDto> getRandomWords(int howMuch) {
-        return List.of();
+        return nounRepository.findRandomNouns(howMuch)
+                .stream().map(NounsMapper::toNounDto).toList();
     }
 
     @Override

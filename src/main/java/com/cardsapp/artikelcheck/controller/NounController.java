@@ -24,6 +24,13 @@ public class NounController {
         return "nouns";
     }
 
+    @GetMapping("/game")
+    public String getRandomNouns(Model model, @RequestParam(name="number",defaultValue = "5") int number){
+        log.info("getRandomNouns() works");
+        model.addAttribute("nounDtoList", nounService.getRandomWords(number));
+        return "game";
+    }
+
     @GetMapping("/add")
     public String showAddForm(Model model){
         model.addAttribute("nounDto", new NounDto());
