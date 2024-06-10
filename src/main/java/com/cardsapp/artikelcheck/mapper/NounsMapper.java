@@ -1,7 +1,7 @@
 package com.cardsapp.artikelcheck.mapper;
 
 import com.cardsapp.artikelcheck.dto.NounDto;
-import com.cardsapp.artikelcheck.model.Noun;
+import com.cardsapp.artikelcheck.model.words.Noun;
 
 public class NounsMapper {
     public static Noun toNoun(NounDto nounDto){

@@ -1,6 +1,6 @@
 package com.cardsapp.artikelcheck.dto;
 
-import com.cardsapp.artikelcheck.model.Hilfsverb;
+import com.cardsapp.artikelcheck.model.words.Hilfsverb;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.SuperBuilder;

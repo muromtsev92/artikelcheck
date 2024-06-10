@@ -1,4 +1,4 @@
-package com.cardsapp.artikelcheck.model;
+package com.cardsapp.artikelcheck.model.words;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

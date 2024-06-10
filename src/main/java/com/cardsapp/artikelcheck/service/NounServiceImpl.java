@@ -3,7 +3,7 @@ package com.cardsapp.artikelcheck.service;
 import com.cardsapp.artikelcheck.dto.NounDto;
 import com.cardsapp.artikelcheck.exceptions.NotFoundException;
 import com.cardsapp.artikelcheck.mapper.NounsMapper;
-import com.cardsapp.artikelcheck.model.Noun;
+import com.cardsapp.artikelcheck.model.words.Noun;
 import com.cardsapp.artikelcheck.repository.NounRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

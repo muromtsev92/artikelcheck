@@ -1,6 +1,6 @@
 package com.cardsapp.artikelcheck.repository;
 
-import com.cardsapp.artikelcheck.model.Noun;
+import com.cardsapp.artikelcheck.model.words.Noun;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
