@@ -5,19 +5,11 @@ import com.cardsapp.artikelcheck.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Configuration
 public class SecurityConfig {
@@ -50,11 +42,11 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((authz) -> authz.requestMatchers("/nouns").hasRole("USER")
-                .requestMatchers("/register").permitAll().anyRequest().authenticated());
+        http.authorizeHttpRequests(authz -> authz
+                .requestMatchers("/nouns").hasRole("USER")
+                .requestMatchers("/register", "/login").permitAll()
+                .anyRequest().authenticated())
+                .formLogin(form -> form.loginPage("/login").permitAll());
         return http.build();
     }
-
-
-
 }
