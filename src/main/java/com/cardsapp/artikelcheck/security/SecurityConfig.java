@@ -46,7 +46,8 @@ public class SecurityConfig {
                 .requestMatchers("/nouns").hasRole("USER")
                 .requestMatchers("/register", "/login").permitAll()
                 .anyRequest().authenticated())
-                .formLogin(form -> form.loginPage("/login").permitAll());
+                .formLogin(form -> form.loginPage("/login").permitAll()
+                .defaultSuccessUrl("/nouns", true));
         return http.build();
     }
 }
