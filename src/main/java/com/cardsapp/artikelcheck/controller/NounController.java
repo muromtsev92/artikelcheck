@@ -4,6 +4,8 @@ import com.cardsapp.artikelcheck.dto.NounDto;
 import com.cardsapp.artikelcheck.service.WordService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,10 @@ public class NounController {
     @GetMapping
     public String getAllNouns(Model model){
         log.info("getAllWords() works");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String user = authentication.getName();
         model.addAttribute("nounDtoList", nounService.findAllWords());
+        model.addAttribute("user", user);
         return "nouns";
     }
 
