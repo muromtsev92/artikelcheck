@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <title>Article check</title>
 </head>
 <body>
 <h1>Register</h1>
-<img th:src="@{/images/bild.png}"/>
+<img th:src="@{resources/images/bild.png}"/>
 <form method="POST" th:action="@{/register}" id="registerForm">
     <label for="username">Username: </label>
     <input type="text" name="username"/><br/>
