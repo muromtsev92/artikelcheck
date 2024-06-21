@@ -1,32 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Article check</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Article check</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14px;
+    }
 
-  <body>
-  <h1>Please sign in</h1>
-  <h2>if you are already registered</h2>
-  <div th:if="${error}">
-    Unable to login. Check your username and password.
-  </div>
-  <p> or click
-    <a th:href="@{/register}">here</a> to register.</p>
+    h1,
+    h2, p {
+      text-align: center;
+    }
 
-    <form method="POST" th:action="@{/login}" id="loginForm">
-      <label for="username">Username: </label>
-      <input type="text" name="username" id="username" />
-      <br/>
-      <label for="password">Password: </label>
-      <input type="password" name="password" id="password" />
-      <br/>
-      <input type="submit" value="Login" />
-    </form>
-    <img src="@{img/bild.png}" alt="not found"/>
+    form {
+      width: 300px;
+      margin: 0 auto;
+      /* Centers the form */
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #e3e3e3;
+      border-radius: 5px;
+    }
 
-  </body>
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+<h1>Please sign in</h1>
+<h2>if you are already registered</h2>
+<p>or click <a th:href="@{/register}">here</a> to register.</p>
+<form method="POST" th:action="@{/login}" id="loginForm">
+  <label for="username">Username:</label>
+  <input type="text" name="username" id="username" />
+  <br/>
+  <label for="password">Password:</label>
+  <input type="password" name="password" id="password" />
+  <br/>
+  <input type="submit" value="Login" /> </form>
+</body>
 
 </html>
