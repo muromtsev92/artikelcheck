@@ -1,40 +1,86 @@
 <!DOCTYPE html>
-<html
-        xmlns:th="http://www.thymeleaf.org"
-        lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>Add noun</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            /* светлый цвет фона */
+            font-family: Arial, sans-serif;
+            /* шрифт Arial */
+            font-size: 14px;
+            /* чуть меньший размер шрифта */
+            text-align: center;
+            /* выравнивание текста по центру */
+        }
+
+        form {
+            display: inline-block;
+            /* делаем форму входа посередине */
+            text-align: left;
+            /* выравниваем текст внутри формы слева */
+            margin-top: 50px;
+            /* расстояние сверху от текста до формы */
+            padding: 20px;
+            background-color: white;
+            /* цвет фона формы */
+            border-radius: 5px;
+            /* скругляем углы формы */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            /* тень для формы */
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            /* отступ внутри текстового поля */
+            margin-bottom: 10px;
+            /* расстояние между текстовыми полями */
+        }
+
+        button {
+            padding: 8px 20px;
+            /* отступы внутри кнопки */
+            background-color: #4CAF50;
+            /* цвет фона кнопки */
+            color: white;
+            /* цвет текста на кнопке */
+            border: none;
+            border-radius: 3px;
+            /* скругляем углы кнопки */
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
 <h1>Add a new noun</h1>
 <form th:action="@{/nouns/add}" th:object="${nounDto}" method="post">
     <div>
-        //TODO: radio button
         <label for="article">Article:</label>
-        <input type="text" id="article" th:field="*{article}"/>
-    </div>
+        <input type="text" id="article" th:field="*{article}" /> </div>
 
     <div>
         <label for="word">Singular:</label>
-        <input type="text" id="word" th:field="*{word}"/>
+        <input type="text" id="word" th:field="*{word}" />
     </div>
 
     <div>
         <label for="plural">Plural:</label>
-        <input type="text" id="plural" th:field="*{plural}"/>
+        <input type="text" id="plural" th:field="*{plural}" />
     </div>
 
     <div>
         <label for="russian">Translation:</label>
-        <input type="text" id="russian" th:field="*{russian}"/>
+        <input type="text" id="russian" th:field="*{russian}" />
     </div>
 
     <div>
         <button type="submit">Add Noun</button>
     </div>
-
 </form>
 </body>
+
 </html>

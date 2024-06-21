@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Article check</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        form {
+            margin: 0 auto;
+            max-width: 300px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
+
 <body>
-<h1>Register</h1>
-<img th:src="@{resources/images/bild.png}"/>
+<h1>Register</h1> <img th:src="@{resources/images/bild.png}" />
 <form method="POST" th:action="@{/register}" id="registerForm">
     <label for="username">Username: </label>
-    <input type="text" name="username"/><br/>
+    <input type="text" name="username" />
+    <br/>
     <label for="password">Password: </label>
-    <input type="password" name="password"/><br/>
+    <input type="password" name="password" />
+    <br/>
     <label for="confirm">Confirm password: </label>
-    <input type="password" name="confirm"/><br/>
-    <input type="submit" value="Register"/>
-</form>
+    <input type="password" name="confirm" />
+    <br/>
+    <input type="submit" value="Register" /> </form>
 </body>
+
 </html>
