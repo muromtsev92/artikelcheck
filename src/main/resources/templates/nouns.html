@@ -8,64 +8,88 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous">
   <style>
-      table {
-          width: 100%;
-          border-collapse: collapse;
+      .flex-container {
+          display: flex;
+          flex-direction: column;
       }
-      table, th, td {
+
+      .flex-row {
+          display: flex;
+          flex-direction: row;
           border: 1px solid black;
       }
-      th, td {
-          padding: 8px;
-          text-align: center;
-      }
-      th {
+
+      .flex-header {
+          display: flex;
+          flex-direction: row;
           background-color: #f2f2f2;
+          font-weight: bold;
+      }
+
+      .flex-item {
+          flex: 1;
+          text-align: center;
+          padding: 8px;
+      }
+
+      .flex-item input {
+          width: 100%;
+          text-align: center;
+          border: none;
+          background-color: transparent;
+      }
+
+      .flex-item input[readonly] {
+          background-color: #f9f9f9;
+      }
+
+      .actions {
+          display: flex;
+          justify-content: center;
+          gap: 5px;
       }
   </style>
 </head>
-<body>
-<h1 class="text-center">List of Nouns</h1>
-<p th:text="'You are logged in as ' + ${user}"></p>
-<p th:if="${message}" th:text="${message}"></p>
-<table class="table table-sm border-0">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Article</th>
-    <th>Word</th>
-    <th>Plural</th>
-    <th>Russian</th>
-    <th>Date of Addition</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="nounDto : ${nounDtoList}">
-    <td th:text="${nounDto.id}"></td>
-    <td><input type="text" th:value="${nounDto.article}" readonly/></td>
-    <td><input type="text" th:value="${nounDto.word}" readonly/></td>
-    <td><input type="text" th:value="${nounDto.plural}" readonly/></td>
-    <td><input type="text" th:value="${nounDto.russian}" readonly/></td>
-    <td th:text="${nounDto.additionDate}"></td>
-    <td>
-      <button type="button" onclick="editRow(this)">Edit</button>
-      <form th:action="@{'/nouns/delete/' + ${nounDto.id}}" method="get" style="display:inline;">
-        <button type="submit">Delete</button>
-      </form>
-      <!--            ?отличие button от form-->
-    </td>
-  </tr>
-  </tbody>
-</table>
 
-<form th:action="@{'/nouns/add'}" method="get" style="display:inline;">
-  <button type="submit">Add new noun</button>
-</form>
+<body>
+<div class="container">
+  <h1 class="text-center">List of Nouns</h1>
+  <p th:text="'You are logged in as ' + ${user}"></p>
+  <p th:if="${message}" th:text="${message}"></p>
+
+  <form class="form my-2" th:action="@{'/nouns/add'}" method="get" style="display:inline;">
+    <button type="submit">Add new noun</button>
+  </form>
+
+  <div class="flex-container">
+    <div class="flex-header">
+      <div class="flex-item">ID</div>
+      <div class="flex-item">Article</div>
+      <div class="flex-item">Word</div>
+      <div class="flex-item">Plural</div>
+      <div class="flex-item">Russian</div>
+      <div class="flex-item">Actions</div>
+    </div>
+
+    <div class="flex-row" th:each="nounDto : ${nounDtoList}">
+      <div class="flex-item" th:text="${nounDto.id}"></div>
+      <div class="flex-item"><input type="text" th:value="${nounDto.article}" readonly/></div>
+      <div class="flex-item"><input type="text" th:value="${nounDto.word}" readonly/></div>
+      <div class="flex-item"><input type="text" th:value="${nounDto.plural}" readonly/></div>
+      <div class="flex-item"><input type="text" th:value="${nounDto.russian}" readonly/></div>
+      <div class="flex-item actions">
+        <button type="button" onclick="editRow(this)">Edit</button>
+        <form th:action="@{'/nouns/delete/' + ${nounDto.id}}" method="get" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
     function editRow(button) {
-        const row = button.closest('tr');
+        const row = button.closest('.flex-row');
         const inputs = row.querySelectorAll('input');
         const editMode = button.textContent === 'Edit';
 
@@ -78,7 +102,7 @@
             button.textContent = 'Edit';
 
             // Save changes
-            const id = row.querySelector('td').textContent.trim();
+            const id = row.querySelector('.flex-item').textContent.trim();
             const data = {
                 article: inputs[0].value,
                 word: inputs[1].value,
@@ -102,6 +126,5 @@
         }
     }
 </script>
-
 </body>
 </html>

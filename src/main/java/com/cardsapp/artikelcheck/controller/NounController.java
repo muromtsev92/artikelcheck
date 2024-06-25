@@ -51,6 +51,7 @@ public class NounController {
     @PostMapping("/update/{id}")
     @ResponseBody
     public void updateNoun(@PathVariable("id") Long id, @RequestBody NounDto nounDto) {
+        log.info("update");
         nounService.updateNoun(id, nounDto);
     }
 
