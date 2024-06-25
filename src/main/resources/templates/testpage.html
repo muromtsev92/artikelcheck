@@ -7,15 +7,40 @@
         rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossorigin="anonymous">
+  <style>
+    .roundedImage{
+        width: 60%;
+        border-radius: 50%;
+    }
+  </style>
   <title>Title</title>
 </head>
 
 <body>
-  <div class="container">
-    <img src="../static/bild.jpg" alt="" />
-    <h1>Vasya Ivanov</h1>
-    <p>hello! this is a welcome page</p>
-    <button>Like!</button>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-lg-6 col-sm-4 mx-auto">
+        <img class="roundedImage" src="../static/bild.jpg" alt="" />
+        <h1>Vasya Ivanov</h1>
+        <p>hello! this is a welcome page. The &ltp&gt HTML  element represents a paragraph.
+          Paragraphs are usually represented in visual media as blocks of text separated from
+          adjacent blocks by blank lines and/ or first-line indentation</p>
+        <a
+            href="https://google.com"
+            target="_blank"
+            class="btn btn-primary"
+        >
+          Google.com
+        </a>
+        <a
+            href="https://yandex.ru"
+            target="_blank"
+            class="btn btn-secondary"
+        >
+          yandex.ru
+        </a>
+      </div>
+    </div>
   </div>
 </body>
 
