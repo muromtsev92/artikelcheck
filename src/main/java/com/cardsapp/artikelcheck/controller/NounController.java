@@ -33,7 +33,7 @@ public class NounController {
     public String getRandomNouns(Model model, @RequestParam(name="number",defaultValue = "5") int number){
         log.info("getRandomNouns() works");
         model.addAttribute("nounDtoList", nounService.getRandomWords(number));
-        return "game";
+        return "nouns";
     }
 
     @GetMapping("/add")
