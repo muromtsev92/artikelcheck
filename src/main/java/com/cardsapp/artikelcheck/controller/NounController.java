@@ -1,6 +1,7 @@
 package com.cardsapp.artikelcheck.controller;
 
 import com.cardsapp.artikelcheck.dto.NounDto;
+import com.cardsapp.artikelcheck.model.words.Noun;
 import com.cardsapp.artikelcheck.service.WordService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
 
 
 @Slf4j
@@ -30,10 +33,9 @@ public class NounController {
     }
 
     @GetMapping("/game")
-    public String getRandomNouns(Model model, @RequestParam(name="number",defaultValue = "5") int number){
+    public List<NounDto> getRandomNouns(@RequestParam(name="number",defaultValue = "5") int number){
         log.info("getRandomNouns() works");
-        model.addAttribute("nounDtoList", nounService.getRandomWords(number));
-        return "nouns";
+        return nounService.getRandomWords(number);
     }
 
     @GetMapping("/add")

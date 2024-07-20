@@ -72,5 +72,4 @@ public class NounServiceImpl implements WordService<NounDto>{
         }
         return "redirect:/nouns";
     }
-
 }
