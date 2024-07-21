@@ -1,6 +1,7 @@
 package com.cardsapp.artikelcheck.controller;
 
 import com.cardsapp.artikelcheck.dto.NounDto;
+import com.cardsapp.artikelcheck.mapper.NounsMapper;
 import com.cardsapp.artikelcheck.model.words.Noun;
 import com.cardsapp.artikelcheck.service.WordService;
 import lombok.RequiredArgsConstructor;
@@ -33,9 +34,9 @@ public class NounController {
     }
 
     @GetMapping("/game")
-    public List<NounDto> getRandomNouns(@RequestParam(name="number",defaultValue = "5") int number){
+    public List<Noun> getRandomNouns(@RequestParam(name="number",defaultValue = "5") int number){
         log.info("getRandomNouns() works");
-        return nounService.getRandomWords(number);
+        return nounService.getRandomWords(number).stream().map(NounsMapper::toNoun).toList();
     }
 
     @GetMapping("/add")
