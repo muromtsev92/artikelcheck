@@ -53,7 +53,9 @@
 
 <body>
 <div class="container">
-  <h1 class="text-center">List of Nouns</h1>
+  <h1 class="text-center">
+    <p th:text="'This is a ' + ${heading}"></p>
+  </h1>
   <p th:text="'You are logged in as ' + ${user}"></p>
   <p th:if="${message}" th:text="${message}"></p>
 

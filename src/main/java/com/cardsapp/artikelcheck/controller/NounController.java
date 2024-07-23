@@ -28,15 +28,21 @@ public class NounController {
         log.info("getAllWords() works");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String user = authentication.getName();
+        model.addAttribute("heading", "list of all nouns in the db");
         model.addAttribute("nounDtoList", nounService.findAllWords());
         model.addAttribute("user", user);
         return "nouns";
     }
 
     @GetMapping("/game")
-    public List<Noun> getRandomNouns(@RequestParam(name="number",defaultValue = "5") int number){
+    public String getRandomNouns(@RequestParam(name="number",defaultValue = "5") int number, Model model){
         log.info("getRandomNouns() works");
-        return nounService.getRandomWords(number).stream().map(NounsMapper::toNoun).toList();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String user = authentication.getName();
+        model.addAttribute("heading", "GAME");
+        model.addAttribute("nounDtoList", nounService.getRandomWords(number));
+        model.addAttribute("user", user);
+        return "nouns";
     }
 
     @GetMapping("/add")
