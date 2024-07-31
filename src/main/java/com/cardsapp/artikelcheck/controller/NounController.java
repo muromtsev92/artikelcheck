@@ -25,7 +25,7 @@ public class NounController {
 
     @GetMapping
     public String getAllNouns(Model model){
-        log.info("getAllWords() works");
+        log.info("GET /nouns");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String user = authentication.getName();
         model.addAttribute("heading", "list of all nouns in the db");
@@ -36,7 +36,7 @@ public class NounController {
 
     @GetMapping("/game")
     public String getRandomNouns(@RequestParam(name="number",defaultValue = "5") int number, Model model){
-        log.info("getRandomNouns() works");
+        log.info("GET randomNouns");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String user = authentication.getName();
         model.addAttribute("heading", "GAME");
@@ -47,27 +47,28 @@ public class NounController {
 
     @GetMapping("/add")
     public String showAddForm(Model model){
+        log.info("GET addForm() {id}", nounDto.getId());
         model.addAttribute("nounDto", new NounDto());
         return "add-noun";
     }
 
     @PostMapping("/add")
     public String addWord(@ModelAttribute NounDto nounDto){
-        log.info("addNoun() {id}", nounDto.getId());
+        log.info("POST addNoun() {id}", nounDto.getId());
         return nounService.addWord(nounDto);
     }
 
     @PostMapping("/update/{id}")
     @ResponseBody
     public void updateNoun(@PathVariable("id") Long id, @RequestBody NounDto nounDto) {
-        log.info("update");
+        log.info("POST update/{id}", id);
         nounService.updateNoun(id, nounDto);
     }
 
     @GetMapping("/delete/{id}")
     public String deleteNoun(@PathVariable Long id,
                              RedirectAttributes redirectAttributes){
-        log.info("deleteNoun() {id}", id);
+        log.info("GET delete/{id}", id);
         nounService.deleteWord(id);
         redirectAttributes
                 .addFlashAttribute("message", "запись " + id + " id удалена");

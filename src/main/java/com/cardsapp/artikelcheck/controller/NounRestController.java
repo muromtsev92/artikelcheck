@@ -21,7 +21,7 @@ public class NounRestController {
 
     @GetMapping("/get-rnd")
     public List<NounDto> getNounsForGame(){
-        log.info("rest get mapping");
+        log.info("GET JSON nouns/get-rnd");
         return nounService.getRandomWords(3);
     }
 }
